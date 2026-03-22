@@ -1,17 +1,12 @@
 import { NextResponse } from "next/server";
+import { buildWaitlistUpstreamUrl } from "@/lib/server/upstream-waitlist";
 
 /**
  * Proxies waitlist POSTs to the real backend so the browser only talks to Next (no CORS).
- * Set INTERNAL_API_BASE_URL in .env.local (e.g. http://localhost:3001/api/v1).
+ * Set INTERNAL_API_ORIGIN (host only) + INTERNAL_API_PREFIX (e.g. /api/v1) in .env / Vercel.
  */
-function upstreamWaitlistUrl(): string {
-  const base = process.env.INTERNAL_API_BASE_URL ?? "http://localhost:3001/api/v1";
-  const trimmed = base.replace(/\/$/, "");
-  return `${trimmed}/waitlist`;
-}
-
 export async function POST(request: Request) {
-  const target = upstreamWaitlistUrl();
+  const target = buildWaitlistUpstreamUrl();
   const body = await request.text();
 
   if (process.env.NODE_ENV === "development") {
