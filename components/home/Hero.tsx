@@ -1,6 +1,13 @@
+"use client";
+
 import Link from "next/link";
+import { useState } from "react";
 
 export default function Hero() {
+  const [copied, setCopied] = useState(false);
+
+  const codeSnippet = `# Get your API key at basktre.in/dashboard\n\ncurl https://api.basktre.in/v1/chat \\\n  -H "api-key: your_basktre_api_key" \\\n  -H "Content-Type: application/json" \\\n  -d '{\n    "model": "auto",\n    "messages": [{ "role": "user", "content": "Summarize this document." }]\n  }'`;
+
   return (
     <section className="mx-auto grid min-h-[calc(100vh-56px)] max-w-[1080px] grid-cols-1 items-center gap-20 px-12 pb-24 pt-20 lg:grid-cols-2">
       <div>
@@ -36,18 +43,19 @@ export default function Hero() {
       <div className="overflow-hidden rounded-[14px] bg-[var(--ink)] shadow-[0_20px_60px_rgba(0,0,0,0.12)]">
         <div className="flex items-center justify-between border-b border-white/10 px-4 py-3">
           <span className="font-mono text-[11px] text-white/30">curl · quick start</span>
-          <span className="rounded border border-white/20 px-2 py-0.5 font-mono text-[11px] text-white/30">copy</span>
+          <button 
+            onClick={() => {
+              navigator.clipboard.writeText(codeSnippet);
+              setCopied(true);
+              setTimeout(() => setCopied(false), 2000);
+            }}
+            className="rounded border border-white/20 px-2 py-0.5 font-mono text-[11px] text-white/30 hover:bg-white/10 transition-colors"
+          >
+            {copied ? "copied!" : "copy"}
+          </button>
         </div>
         <pre className="overflow-x-auto px-5 py-6 font-mono text-[12.5px] leading-8 text-white/85">
-          {`# Get your API key at basktre.dev/dashboard
-
-curl https://api.basktre.dev/v1/chat \\
-  -H "Authorization: Bearer bsk_your_key" \\
-  -H "Content-Type: application/json" \\
-  -d '{
-    "model": "auto",
-    "messages": [{ "role": "user", "content": "Summarize this document." }]
-  }'`}
+          {codeSnippet}
         </pre>
       </div>
     </section>
