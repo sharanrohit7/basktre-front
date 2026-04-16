@@ -6,9 +6,7 @@ export default function ContactCards() {
         We&apos;re a small team and we read every message. Reach out for questions, bug reports, or anything else.
       </p>
       <div className="space-y-2.5">
-        <Card label="General enquiries" email="hello@basktre.dev" />
-        <Card label="Technical support" email="support@basktre.dev" />
-        <Card label="Legal & compliance" email="legal@basktre.dev" />
+        <Card label="Contact us" email="tech@basktre.in" />
       </div>
     </section>
   );

@@ -11,6 +11,9 @@ export default function AboutPage() {
       <MissionBand />
       <Values />
       <FactsGrid />
+      <section className="mx-auto max-w-[760px] px-12 pt-8">
+        <p className="text-sm text-[var(--text-2)]">Legal Entity: Microstack Labs</p>
+      </section>
       <ContactCards />
     </>
   );
