@@ -3,6 +3,7 @@ import FAQ from "@/components/home/FAQ";
 import FeaturesGrid from "@/components/home/FeaturesGrid";
 import Hero from "@/components/home/Hero";
 import PrivacyBand from "@/components/home/PrivacyBand";
+import ProviderShowcase from "@/components/home/ProviderShowcase";
 import StatsBar from "@/components/home/StatsBar";
 import WaitlistForm from "@/components/home/WaitlistForm";
 
@@ -13,6 +14,7 @@ export default function HomePage() {
       <StatsBar />
       <AutoRoutingVisual />
       <FeaturesGrid />
+      <ProviderShowcase />
       <PrivacyBand />
       <FAQ />
 

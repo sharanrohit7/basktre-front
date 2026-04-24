@@ -2,6 +2,7 @@
 
 import Link from "next/link";
 import { useState } from "react";
+import GoogleSignInButton from "@/components/ui/GoogleSignInButton";
 
 export default function Hero() {
   const [copied, setCopied] = useState(false);
@@ -26,10 +27,13 @@ export default function Hero() {
           One API key. 60+ models. Let Basktre automatically pick the best model for each request - cutting your AI
           costs by up to 40% with no loss in quality.
         </p>
+
+        {/* Primary CTA: Google Sign-In */}
+        <div className="mb-4">
+          <GoogleSignInButton />
+        </div>
+
         <div className="flex flex-wrap gap-2.5">
-          <Link href="/#waitlist" className="rounded-[7px] bg-[var(--ink)] px-5 py-2.5 text-[15px] font-medium text-white">
-            Join the Waitlist
-          </Link>
           <Link
             href="/#how-it-works"
             className="rounded-[7px] border border-[var(--border-dark)] px-5 py-2.5 text-[15px] text-[var(--text-2)]"
@@ -37,13 +41,14 @@ export default function Hero() {
             See how it works
           </Link>
         </div>
+
         <p className="mt-4 text-xs text-[var(--text-3)]">No prompts stored. No response logs. Ever.</p>
       </div>
 
       <div className="overflow-hidden rounded-[14px] bg-[var(--ink)] shadow-[0_20px_60px_rgba(0,0,0,0.12)]">
         <div className="flex items-center justify-between border-b border-white/10 px-4 py-3">
           <span className="font-mono text-[11px] text-white/30">curl · quick start</span>
-          <button 
+          <button
             onClick={() => {
               navigator.clipboard.writeText(codeSnippet);
               setCopied(true);

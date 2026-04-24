@@ -1,6 +1,11 @@
+"use client";
+
 import Link from "next/link";
+import { useAuth } from "@/lib/auth";
 
 export default function Navbar() {
+  const auth = useAuthSafe();
+
   return (
     <nav className="fixed left-0 right-0 top-0 z-[100] flex h-14 items-center justify-between border-b border-[var(--border)] bg-[rgba(250,249,247,0.9)] px-12 backdrop-blur-md">
       <Link href="/" className="flex items-center gap-2.5 text-[var(--text)] no-underline">
@@ -17,13 +22,35 @@ export default function Navbar() {
         <Link href="#" className="text-[var(--text-2)]">
           Docs
         </Link>
-        <Link
-          href="/#waitlist"
-          className="rounded-[7px] bg-[var(--ink)] px-3.5 py-2 text-[13.5px] font-medium text-white"
-        >
-          Join Waitlist
-        </Link>
+        {auth?.isAuthenticated ? (
+          <Link
+            href="/dashboard"
+            className="rounded-[7px] bg-[var(--ink)] px-3.5 py-2 text-[13.5px] font-medium text-white"
+          >
+            Dashboard
+          </Link>
+        ) : (
+          <Link
+            href="/#waitlist"
+            className="btn-ghost"
+            style={{ fontSize: 13.5, padding: "8px 14px" }}
+          >
+            Sign in
+          </Link>
+        )}
       </div>
     </nav>
   );
+}
+
+/**
+ * Safe wrapper that returns null if AuthProvider is not mounted.
+ * This allows Navbar to work on pages that don't have AuthProvider.
+ */
+function useAuthSafe() {
+  try {
+    return useAuth();
+  } catch {
+    return null;
+  }
 }

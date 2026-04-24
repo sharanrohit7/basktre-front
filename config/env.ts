@@ -11,5 +11,6 @@ export const env = {
   appUrl: process.env.NEXT_PUBLIC_APP_URL ?? "http://localhost:3000",
   appEnv: appEnv(),
   isProduction: process.env.NEXT_PUBLIC_APP_ENV === "production",
-  isDevelopment: (process.env.NEXT_PUBLIC_APP_ENV ?? "development") === "development"
+  isDevelopment: (process.env.NEXT_PUBLIC_APP_ENV ?? "development") === "development",
+  googleClientId: process.env.NEXT_PUBLIC_GOOGLE_CLIENT_ID ?? ""
 } as const;
