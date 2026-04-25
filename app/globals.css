@@ -270,3 +270,52 @@ body {
   from { transform: translateY(0); }
   to { transform: translateY(-2px); }
 }
+
+/* ─── Model table row entrance ───────────────────── */
+@keyframes fadeInRow {
+  from {
+    opacity: 0;
+    transform: translateY(4px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* ─── Provider showcase responsive ──────────────── */
+@media (max-width: 680px) {
+  /* Collapse sidebar + table to stacked layout */
+  #providers [style*="grid-template-columns: 200px 1fr"] {
+    grid-template-columns: 1fr !important;
+  }
+  #providers aside[style*="sticky"] {
+    position: static !important;
+    display: flex !important;
+    flex-direction: row !important;
+    flex-wrap: wrap !important;
+    gap: 6px !important;
+    padding: 10px !important;
+  }
+}
+
+/* ─── Landing page polish ────────────────────────── */
+
+/* Router pill pulse */
+@keyframes routerPulse {
+  0%, 100% { opacity: 1; box-shadow: 0 0 0 0 rgba(26, 107, 74, 0.3); }
+  50%       { opacity: 0.85; box-shadow: 0 0 0 6px rgba(26, 107, 74, 0); }
+}
+.router-pulse {
+  animation: routerPulse 2s ease-in-out infinite;
+}
+
+/* Feature card subtle hover lift */
+.feature-card {
+  transition: box-shadow 0.2s ease, transform 0.2s ease, background 0.15s ease;
+}
+.feature-card:hover {
+  box-shadow: 0 4px 20px rgba(0,0,0,0.07);
+  transform: translateY(-1px);
+  background: var(--surface) !important;
+}

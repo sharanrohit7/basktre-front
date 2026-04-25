@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useState, useCallback } from "react";
 import { useAuth } from "@/lib/auth";
 import { getWallet, getWalletTransactions } from "@/lib/api";
 import type { WorkspaceWallet, WalletTransaction } from "@/types";
@@ -13,7 +13,7 @@ export default function WalletPage() {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
 
-  async function load() {
+  const load = useCallback(async () => {
     if (!activeWorkspace || !token) return;
 
     setLoading(true);
@@ -30,11 +30,11 @@ export default function WalletPage() {
     } finally {
       setLoading(false);
     }
-  }
+  }, [activeWorkspace, token]);
 
   useEffect(() => {
     load();
-  }, [activeWorkspace?.id, token]);
+  }, [load]);
 
   if (!activeWorkspace) {
     return (

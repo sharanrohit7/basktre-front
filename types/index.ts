@@ -104,11 +104,10 @@ export interface ApiKeyDeleteResponse {
 // ─── Providers ───────────────────────────────────────
 
 export interface Provider {
+  name: string;
   tag: string;
-  supports_streaming: boolean;
-  supports_function_calling: boolean;
-  supports_vision: boolean;
-  max_context_tokens?: number;
+  input_cost_per_1m: number;
+  output_cost_per_1m: number;
 }
 
 export interface ProvidersResponse {

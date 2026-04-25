@@ -29,7 +29,7 @@ export default function ApiKeysPage() {
     } finally {
       setLoading(false);
     }
-  }, [activeWorkspace?.id, token]);
+  }, [activeWorkspace, token]);
 
   useEffect(() => {
     fetchKeys();
