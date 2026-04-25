@@ -7,15 +7,12 @@ import Link from "next/link";
 export default function Hero() {
   const [copied, setCopied] = useState(false);
 
-  const codeSnippet = `# Basktre picks the cheapest capable model automatically
-# Get your key at basktre.in/dashboard
-
-curl https://api.basktre.in/v1/chat \\
+  const codeSnippet = `curl https://api.basktre.in/api/v1/models/stream \\
   -H "api-key: your_basktre_key" \\
   -H "Content-Type: application/json" \\
   -d '{
     "model": "auto",
-    "messages": [{ "role": "user", "content": "Summarize this." }]
+    "messages": [{"role": "user", "content": "How can I save $100 every month using AI?"}]
   }'`;
 
   return (
@@ -136,9 +133,8 @@ curl https://api.basktre.in/v1/chat \\
 
           {/* Code */}
           <pre className="overflow-x-auto px-5 py-6 font-mono text-[12.5px] leading-[1.9] text-white/80">
-            <span className="text-white/30">{`# Basktre picks the cheapest capable model automatically\n# Get your key at basktre.in/dashboard\n\n`}</span>
             <span className="text-[#86efac]">curl</span>
-            {` https://api.basktre.in/v1/chat \\\n`}
+            {` https://api.basktre.in/api/v1/models/stream \\\n`}
             {"  "}
             <span className="text-[#93c5fd]">-H</span>
             {` "api-key: `}
@@ -162,7 +158,7 @@ curl https://api.basktre.in/v1/chat \\
             {`, `}
             <span className="text-[#f9a8d4]">&quot;content&quot;</span>
             {`: `}
-            <span className="text-[#fde68a]">&quot;Summarize this.&quot;</span>
+            <span className="text-[#fde68a]">&quot;Explain AI gateway&quot;</span>
             {`}]\n  }'`}
           </pre>
 
