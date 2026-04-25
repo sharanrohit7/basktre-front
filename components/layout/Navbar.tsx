@@ -31,9 +31,8 @@ export default function Navbar() {
           </Link>
         ) : (
           <Link
-            href="/#waitlist"
-            className="btn-ghost"
-            style={{ fontSize: 13.5, padding: "8px 14px" }}
+            href="/#start-building"
+            className="rounded-[7px] border border-[var(--border-dark)] px-4 py-1.5 text-[13.5px] font-medium text-[var(--text-2)] transition-colors hover:border-[var(--text-3)] hover:text-[var(--text)]"
           >
             Sign in
           </Link>

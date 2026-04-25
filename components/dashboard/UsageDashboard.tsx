@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, useCallback } from "react";
 import {
   Chart as ChartJS,
   CategoryScale,
@@ -314,7 +314,7 @@ export default function UsageDashboard() {
   const [error, setError] = useState<string | null>(null);
   const [lastRefresh, setLastRefresh] = useState<Date | null>(null);
 
-  async function load() {
+  const load = useCallback(async () => {
     if (!activeWorkspace || !token) return;
     
     setLoading(true);
@@ -332,11 +332,11 @@ export default function UsageDashboard() {
     } finally {
       setLoading(false);
     }
-  }
+  }, [activeWorkspace, token]);
 
   useEffect(() => {
     load();
-  }, [activeWorkspace?.id, token]);
+  }, [load]);
 
   if (!activeWorkspace) {
     return <EmptyState message="Please select a workspace to view analytics." />;
