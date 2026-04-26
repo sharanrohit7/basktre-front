@@ -81,6 +81,17 @@ export default function Hero() {
           <div className="hero-fade hero-fade-4">
             <div className="mb-4">
               <GoogleSignInButton />
+              <div className="mt-3 flex items-center gap-2 px-1">
+                <span className="relative flex h-2 w-2">
+                  <span className="absolute inline-flex h-2 w-2 animate-ping rounded-full bg-[#4ade80] opacity-75"></span>
+                  <span className="relative inline-flex h-2 w-2 rounded-full bg-[#4ade80]"></span>
+                </span>
+                <span className="text-[12.5px] text-[var(--text-2)]">
+                  🎁 Launch offer:{" "}
+                  <strong className="font-semibold text-[var(--text)]">$1.00 free credits</strong>{" "}
+                  on sign up — <a href="#launch-offer" className="text-[var(--accent)] underline underline-offset-2 hover:opacity-80">claim yours →</a>
+                </span>
+              </div>
             </div>
 
             <div className="flex flex-wrap items-center gap-2.5">
@@ -95,6 +106,12 @@ export default function Hero() {
                 className="px-3 py-2 text-[13px] text-[var(--text-3)] transition-colors hover:text-[var(--text-2)]"
               >
                 Browse models &amp; pricing →
+              </Link>
+              <Link
+                href="/docs"
+                className="px-3 py-2 text-[13px] text-[var(--accent)] font-medium transition-colors hover:opacity-80"
+              >
+                API Docs
               </Link>
             </div>
 

@@ -9,7 +9,11 @@ const instrumentSerif = Instrument_Serif({ weight: "400", subsets: ["latin"], va
 
 export const metadata: Metadata = {
   title: "Basktre",
-  description: "AI API calls, smarter and cheaper."
+  description: "AI API calls, smarter and cheaper.",
+  icons: {
+    icon: "/icon",
+    apple: "/apple-icon",
+  },
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
