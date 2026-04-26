@@ -1,63 +1,201 @@
 "use client";
 
-import Link from "next/link";
 import { useState } from "react";
+import GoogleSignInButton from "@/components/ui/GoogleSignInButton";
+import Link from "next/link";
 
 export default function Hero() {
   const [copied, setCopied] = useState(false);
 
-  const codeSnippet = `# Get your API key at basktre.in/dashboard\n\ncurl https://api.basktre.in/v1/chat \\\n  -H "api-key: your_basktre_api_key" \\\n  -H "Content-Type: application/json" \\\n  -d '{\n    "model": "auto",\n    "messages": [{ "role": "user", "content": "Summarize this document." }]\n  }'`;
+  const codeSnippet = `curl https://api.basktre.in/api/v1/models/stream \\
+  -H "api-key: your_basktre_key" \\
+  -H "Content-Type: application/json" \\
+  -d '{
+    "model": "auto",
+    "messages": [{"role": "user", "content": "How can I save $100 every month using AI?"}]
+  }'`;
 
   return (
-    <section className="mx-auto grid min-h-[calc(100vh-56px)] max-w-[1080px] grid-cols-1 items-center gap-20 px-12 pb-24 pt-20 lg:grid-cols-2">
-      <div>
-        <div className="mb-6 inline-flex items-center gap-2 rounded-full border border-[rgba(26,107,74,0.18)] bg-[var(--accent-light)] px-3 py-1 font-mono text-[11px] text-[var(--accent)]">
-          <span className="h-1.5 w-1.5 rounded-full bg-[var(--accent)]" />
-          Now in beta · 60+ models available
-        </div>
-        <h1 className="mb-5 font-[var(--font-serif)] text-[clamp(40px,5vw,62px)] leading-[1.08] tracking-[-1.5px]">
-          AI API calls,
-          <br />
-          <em className="text-[var(--accent)]">smarter</em> and
-          <br />
-          cheaper.
-        </h1>
-        <p className="mb-8 max-w-[420px] text-base font-light leading-7 text-[var(--text-2)]">
-          One API key. 60+ models. Let Basktre automatically pick the best model for each request - cutting your AI
-          costs by up to 40% with no loss in quality.
-        </p>
-        <div className="flex flex-wrap gap-2.5">
-          <Link href="/#waitlist" className="rounded-[7px] bg-[var(--ink)] px-5 py-2.5 text-[15px] font-medium text-white">
-            Join the Waitlist
-          </Link>
-          <Link
-            href="/#how-it-works"
-            className="rounded-[7px] border border-[var(--border-dark)] px-5 py-2.5 text-[15px] text-[var(--text-2)]"
-          >
-            See how it works
-          </Link>
-        </div>
-        <p className="mt-4 text-xs text-[var(--text-3)]">No prompts stored. No response logs. Ever.</p>
-      </div>
+    <>
+      <style>{`
+        @keyframes heroFadeUp {
+          from { opacity: 0; transform: translateY(18px); }
+          to   { opacity: 1; transform: translateY(0); }
+        }
+        @keyframes badgePulse {
+          0%, 100% { opacity: 1; }
+          50%       { opacity: 0.45; }
+        }
+        @keyframes ticker {
+          0%   { transform: translateX(0); }
+          100% { transform: translateX(-50%); }
+        }
+        .hero-fade { animation: heroFadeUp 0.55s ease both; }
+        .hero-fade-1 { animation-delay: 0.05s; }
+        .hero-fade-2 { animation-delay: 0.15s; }
+        .hero-fade-3 { animation-delay: 0.25s; }
+        .hero-fade-4 { animation-delay: 0.35s; }
+        .hero-copy-btn:hover { background: rgba(255,255,255,0.12) !important; }
+      `}</style>
 
-      <div className="overflow-hidden rounded-[14px] bg-[var(--ink)] shadow-[0_20px_60px_rgba(0,0,0,0.12)]">
-        <div className="flex items-center justify-between border-b border-white/10 px-4 py-3">
-          <span className="font-mono text-[11px] text-white/30">curl · quick start</span>
-          <button 
-            onClick={() => {
-              navigator.clipboard.writeText(codeSnippet);
-              setCopied(true);
-              setTimeout(() => setCopied(false), 2000);
-            }}
-            className="rounded border border-white/20 px-2 py-0.5 font-mono text-[11px] text-white/30 hover:bg-white/10 transition-colors"
+      <section className="mx-auto grid min-h-[calc(100vh-56px)] max-w-[1080px] grid-cols-1 items-center gap-16 px-12 pb-24 pt-16 lg:grid-cols-2">
+        {/* ── Left copy ── */}
+        <div>
+          {/* Live badge */}
+          <div
+            className="hero-fade hero-fade-1 mb-6 inline-flex items-center gap-2 whitespace-nowrap rounded-full border border-[rgba(26,107,74,0.22)] bg-[var(--accent-light)] px-3 py-1 font-mono text-[11px] text-[var(--accent)]"
           >
-            {copied ? "copied!" : "copy"}
-          </button>
+            <span
+              className="h-1.5 w-1.5 flex-shrink-0 rounded-full bg-[var(--accent)]"
+              style={{ animation: "badgePulse 2s ease-in-out infinite" }}
+            />
+            Live · 60+ models · zero waitlist
+          </div>
+
+          {/* Headline */}
+          <h1
+            className="hero-fade hero-fade-2 mb-5 font-[var(--font-serif)] text-[clamp(40px,5vw,64px)] leading-[1.06] tracking-[-1.5px]"
+          >
+            One key.
+            <br />
+            Every model.
+            <br />
+            <em className="text-[var(--accent)]">Zero markup.</em>
+          </h1>
+
+          {/* Sub-headline */}
+          <p className="hero-fade hero-fade-3 mb-8 max-w-[430px] text-base font-light leading-[1.85] text-[var(--text-2)]">
+            One Basktre API key unlocks 60+ models — GPT, Claude, Gemini, Llama,
+            DeepSeek, and more. Set&nbsp;
+            <code className="rounded bg-[var(--surface)] px-1 py-0.5 font-mono text-[12px] text-[var(--text)]">
+              model:&nbsp;&quot;auto&quot;
+            </code>{" "}
+            and we route each request to the cheapest model that can do the job.
+            Avg&nbsp;~40% savings, automatically.{" "}
+            <strong className="font-semibold text-[var(--text)]">
+              We charge 4% on wallet top-ups. Every other cent goes straight to model costs.
+            </strong>
+          </p>
+
+          {/* CTAs */}
+          <div className="hero-fade hero-fade-4">
+            <div className="mb-4">
+              <GoogleSignInButton />
+              <div className="mt-3 flex items-center gap-2 px-1">
+                <span className="relative flex h-2 w-2">
+                  <span className="absolute inline-flex h-2 w-2 animate-ping rounded-full bg-[#4ade80] opacity-75"></span>
+                  <span className="relative inline-flex h-2 w-2 rounded-full bg-[#4ade80]"></span>
+                </span>
+                <span className="text-[12.5px] text-[var(--text-2)]">
+                  🎁 Launch offer:{" "}
+                  <strong className="font-semibold text-[var(--text)]">$1.00 free credits</strong>{" "}
+                  on sign up — <a href="#launch-offer" className="text-[var(--accent)] underline underline-offset-2 hover:opacity-80">claim yours →</a>
+                </span>
+              </div>
+            </div>
+
+            <div className="flex flex-wrap items-center gap-2.5">
+              <Link
+                href="/#how-it-works"
+                className="rounded-[7px] border border-[var(--border-dark)] bg-white px-5 py-2.5 text-[14px] font-medium text-[var(--text-2)] transition-all hover:border-[var(--text-3)] hover:bg-[var(--surface)] hover:text-[var(--text)]"
+              >
+                See how it works
+              </Link>
+              <Link
+                href="/#providers"
+                className="px-3 py-2 text-[13px] text-[var(--text-3)] transition-colors hover:text-[var(--text-2)]"
+              >
+                Browse models &amp; pricing →
+              </Link>
+              <Link
+                href="/docs"
+                className="px-3 py-2 text-[13px] text-[var(--accent)] font-medium transition-colors hover:opacity-80"
+              >
+                API Docs
+              </Link>
+            </div>
+
+            {/* Trust line */}
+            <p className="mt-5 text-[11.5px] leading-6 text-[var(--text-3)]">
+              No prompts stored.&ensp;·&ensp;No response logs.&ensp;·&ensp;4% platform fee.&ensp;·&ensp;That&apos;s it.
+            </p>
+          </div>
         </div>
-        <pre className="overflow-x-auto px-5 py-6 font-mono text-[12.5px] leading-8 text-white/85">
-          {codeSnippet}
-        </pre>
-      </div>
-    </section>
+
+        {/* ── Right: terminal card ── */}
+        <div
+          className="hero-fade hero-fade-3 overflow-hidden rounded-[14px] shadow-[0_24px_72px_rgba(0,0,0,0.14)]"
+          style={{ background: "var(--ink)" }}
+        >
+          {/* Title bar */}
+          <div className="flex items-center justify-between border-b border-white/10 px-4 py-3">
+            <div className="flex items-center gap-2">
+              <span className="h-2.5 w-2.5 rounded-full bg-[#ff5f57]" />
+              <span className="h-2.5 w-2.5 rounded-full bg-[#febc2e]" />
+              <span className="h-2.5 w-2.5 rounded-full bg-[#28c840]" />
+              <span className="ml-2 font-mono text-[11px] text-white/30">curl · quick start</span>
+            </div>
+            <button
+              onClick={() => {
+                navigator.clipboard.writeText(codeSnippet);
+                setCopied(true);
+                setTimeout(() => setCopied(false), 2000);
+              }}
+              className="rounded border border-white/20 px-2 py-0.5 font-mono text-[11px] text-white/30 transition-all hover:border-white/40 hover:text-white/60"
+              style={{ background: "transparent" }}
+            >
+              {copied ? "copied ✓" : "copy"}
+            </button>
+          </div>
+
+          {/* Code */}
+          <pre className="overflow-x-auto px-5 py-6 font-mono text-[12.5px] leading-[1.9] text-white/80">
+            <span className="text-[#86efac]">curl</span>
+            {` https://api.basktre.in/api/v1/models/stream \\\n`}
+            {"  "}
+            <span className="text-[#93c5fd]">-H</span>
+            {` "api-key: `}
+            <span className="text-[#fde68a]">your_basktre_key</span>
+            {`" \\\n`}
+            {"  "}
+            <span className="text-[#93c5fd]">-H</span>
+            {` "Content-Type: application/json" \\\n`}
+            {"  "}
+            <span className="text-[#93c5fd]">-d</span>
+            {` '{\n    `}
+            <span className="text-[#f9a8d4]">&quot;model&quot;</span>
+            {`: `}
+            <span className="text-[#86efac]">&quot;auto&quot;</span>
+            {`,\n    `}
+            <span className="text-[#f9a8d4]">&quot;messages&quot;</span>
+            {`: [{`}
+            <span className="text-[#f9a8d4]">&quot;role&quot;</span>
+            {`: `}
+            <span className="text-[#86efac]">&quot;user&quot;</span>
+            {`, `}
+            <span className="text-[#f9a8d4]">&quot;content&quot;</span>
+            {`: `}
+            <span className="text-[#fde68a]">&quot;Explain AI gateway&quot;</span>
+            {`}]\n  }'`}
+          </pre>
+
+          {/* Bottom response preview */}
+          <div className="border-t border-white/10 px-5 py-4">
+            <div className="mb-2 font-mono text-[10px] uppercase tracking-[1px] text-white/25">
+              auto-routed response
+            </div>
+            <div className="flex items-center justify-between">
+              <div className="flex items-center gap-2">
+                <span className="rounded bg-[rgba(134,239,172,0.15)] px-2 py-0.5 font-mono text-[11px] text-[#86efac]">
+                  gemini-2.0-flash
+                </span>
+                <span className="font-mono text-[11px] text-white/35">selected by router</span>
+              </div>
+              <span className="font-mono text-[11px] text-[#86efac]">↓ 78% cost</span>
+            </div>
+          </div>
+        </div>
+      </section>
+    </>
   );
 }
