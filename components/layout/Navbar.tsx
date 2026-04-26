@@ -7,7 +7,7 @@ export default function Navbar() {
   const auth = useAuthSafe();
 
   return (
-    <nav className="fixed left-0 right-0 top-0 z-[100] flex h-14 items-center justify-between border-b border-[var(--border)] bg-[rgba(250,249,247,0.9)] px-12 backdrop-blur-md">
+    <nav className="sticky left-0 right-0 top-0 z-[100] flex h-14 items-center justify-between border-b border-[var(--border)] bg-[rgba(250,249,247,0.9)] px-12 backdrop-blur-md">
       <Link href="/" className="flex items-center gap-2.5 text-[var(--text)] no-underline">
         <div className="relative h-[26px] w-[26px] rounded-md bg-[var(--accent)]" />
         <span className="text-base font-semibold">basktre</span>
@@ -19,7 +19,7 @@ export default function Navbar() {
         <Link href="/#faq" className="text-[var(--text-2)]">
           FAQ
         </Link>
-        <Link href="#" className="text-[var(--text-2)]">
+        <Link href="/docs" className="text-[var(--text-2)]">
           Docs
         </Link>
         {auth?.isAuthenticated ? (

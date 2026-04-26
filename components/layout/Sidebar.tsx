@@ -60,6 +60,21 @@ const navItems = [
         />
       </svg>
     )
+  },
+  {
+    label: "API Docs",
+    href: "/docs",
+    icon: (
+      <svg width="18" height="18" viewBox="0 0 18 18" fill="none">
+        <path
+          d="M3 4.5A1.5 1.5 0 0 1 4.5 3h9A1.5 1.5 0 0 1 15 4.5v9a1.5 1.5 0 0 1-1.5 1.5h-9A1.5 1.5 0 0 1 3 13.5v-9z"
+          stroke="currentColor"
+          strokeWidth="1.5"
+        />
+        <path d="M7 7h4M7 10h4M7 13h2" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" />
+        <path d="M3 6h12" stroke="currentColor" strokeWidth="1.5" />
+      </svg>
+    )
   }
 ];
 

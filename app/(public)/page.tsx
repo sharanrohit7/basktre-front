@@ -4,6 +4,7 @@ import FeaturesGrid from "@/components/home/FeaturesGrid";
 import Hero from "@/components/home/Hero";
 import PrivacyBand from "@/components/home/PrivacyBand";
 import ProviderShowcase from "@/components/home/ProviderShowcase";
+import SignUpOffer from "@/components/home/SignUpOffer";
 import StatsBar from "@/components/home/StatsBar";
 import GoogleSignInButton from "@/components/ui/GoogleSignInButton";
 import Link from "next/link";
@@ -13,6 +14,7 @@ export default function HomePage() {
     <>
       <Hero />
       <StatsBar />
+      <SignUpOffer />
       <AutoRoutingVisual />
       <FeaturesGrid />
       <ProviderShowcase />
