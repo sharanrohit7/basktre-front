@@ -65,8 +65,7 @@ export default function SignUpOffer() {
             <p className="mb-8 max-w-[480px] text-[16px] font-light leading-[1.85] text-white/60">
               Create a free Basktre account and receive{" "}
               <strong className="font-semibold text-white">$1 USD in instant wallet credits</strong> — 
-              no credit card, no trial period, no strings. Use them across our currently available AI models 
-              including GPT-4o, Claude, Gemini, Llama, and DeepSeek at displayed per-token rates with no additional Basktre token markup.
+              no credit card, no trial period, no strings. Use them across currently available AI models at displayed per-token rates with no additional Basktre token markup.
             </p>
 
             {/* Rotating fact pill — how far $1 goes */}
