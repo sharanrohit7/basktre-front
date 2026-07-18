@@ -8,8 +8,11 @@ import SignUpOffer from "@/components/home/SignUpOffer";
 import StatsBar from "@/components/home/StatsBar";
 import GoogleSignInButton from "@/components/ui/GoogleSignInButton";
 import Link from "next/link";
+import { getProviders } from "@/lib/server/pricing";
+import { selectFeaturedProviders } from "@/lib/pricing";
 
-export default function HomePage() {
+export default async function HomePage() {
+  const featuredProviders = selectFeaturedProviders(await getProviders());
   return (
     <>
       <Hero />
@@ -17,7 +20,7 @@ export default function HomePage() {
       <SignUpOffer />
       <AutoRoutingVisual />
       <FeaturesGrid />
-      <ProviderShowcase />
+      <ProviderShowcase initialProviders={featuredProviders} />
       <PrivacyBand />
       <FAQ />
 

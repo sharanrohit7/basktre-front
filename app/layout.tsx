@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Instrument_Serif } from "next/font/google";
 import { GeistMono } from "geist/font/mono";
 import { GeistSans } from "geist/font/sans";
+import { Analytics } from "@vercel/analytics/next";
 import { Providers } from "./providers";
 import "./globals.css";
 import { siteConfig } from "@/config/site";
@@ -35,6 +36,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         className={`${GeistSans.variable} ${GeistMono.variable} ${instrumentSerif.variable} font-[var(--font-geist)]`}
       >
         <Providers>{children}</Providers>
+        <Analytics />
         <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify({
           "@context": "https://schema.org", "@graph": [
             { "@type": "Organization", "@id": `${siteConfig.url}/#organization`, name: "Basktre", legalName: "Microstack Labs", url: siteConfig.url, email: "tech@basktre.in" },

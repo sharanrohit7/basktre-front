@@ -12,7 +12,7 @@ const pillars = [
   {
     icon: "💸",
     title: "Zero markup",
-    desc: "4% on wallet top-ups. 100% of the rest goes directly to model costs at exact provider rates. No hidden fees, no per-request margin, no surprises.",
+    desc: "4% on wallet top-ups. The remaining balance is used for model costs at displayed per-token rates, with no additional Basktre token markup.",
   },
 ];
 

@@ -97,9 +97,9 @@ const BEST_VALUE_TAGS = ["gemini-2.0-flash", "gemini-2.0-flash-lite", "llama-3.3
 type SortKey = "name" | "input" | "output" | "total";
 
 // ─── Component ────────────────────────────────────────────────────────────────
-export default function ProviderShowcase() {
-  const [providers, setProviders] = useState<Provider[]>([]);
-  const [loading, setLoading] = useState(true);
+export default function ProviderShowcase({ initialProviders = [] }: { initialProviders?: Provider[] }) {
+  const [providers, setProviders] = useState<Provider[]>(initialProviders);
+  const [loading, setLoading] = useState(initialProviders.length === 0);
   const [error, setError] = useState(false);
   const [search, setSearch] = useState("");
   const [activeBrand, setActiveBrand] = useState<string | null>(null);
@@ -109,9 +109,9 @@ export default function ProviderShowcase() {
   useEffect(() => {
     listProviders()
       .then((res) => setProviders(res.data ?? []))
-      .catch(() => setError(true))
+      .catch(() => setError(initialProviders.length === 0))
       .finally(() => setLoading(false));
-  }, []);
+  }, [initialProviders.length]);
 
   // Derived brand counts
   const brandCounts = useMemo(() => {
@@ -167,7 +167,7 @@ export default function ProviderShowcase() {
         <em className="text-[var(--accent)]">Transparent pricing.</em>
       </h2>
       <p className="mb-8 max-w-[560px] text-base font-light leading-7 text-[var(--text-2)]">
-        Pricing shown is the <strong className="font-semibold text-[var(--text)]">direct model cost</strong> — no Basktre markup on tokens.
+        Pricing shows the <strong className="font-semibold text-[var(--text)]">displayed per-token model rates</strong> with no additional Basktre token markup.
         The only fee is 4% when you top up your wallet. Browse, compare, and pick the right model for every task.
       </p>
 
@@ -299,7 +299,7 @@ export default function ProviderShowcase() {
               <div style={{ marginTop: 10, padding: "10px 14px", borderRadius: "var(--radius-md)", border: "1px solid var(--border)", display: "flex", alignItems: "center", gap: 8, background: "var(--surface)" }}>
                 <span style={{ fontSize: 13, color: "var(--text-3)" }}>💡</span>
                 <span style={{ fontSize: 12, color: "var(--text-3)", fontStyle: "italic" }}>
-                  All prices are pass-through. You pay exactly what the model provider charges — no Basktre markup on tokens.
+                  Displayed per-token model rates include no additional Basktre token markup.
                 </span>
               </div>
             </>

@@ -27,6 +27,23 @@ export function providerBrand(tag: string): string {
 
 export function estimateCost(provider: Provider, inputTokens: number, outputTokens: number, requests: number) {
   const usageCost = ((inputTokens / 1_000_000) * provider.input_cost_per_1m + (outputTokens / 1_000_000) * provider.output_cost_per_1m) * requests;
-  const topUpFee = usageCost * 0.04;
-  return { usageCost, topUpFee, total: usageCost + topUpFee };
+  const total = usageCost / 0.96;
+  const topUpFee = total - usageCost;
+  return { usageCost, topUpFee, total };
+}
+
+const FEATURED_MODEL_FAMILIES = ["gpt-5", "gpt-4o", "claude-sonnet", "claude-haiku", "gemini", "deepseek", "llama", "qwen"];
+
+export function selectFeaturedProviders(providers: Provider[], limit = 10): Provider[] {
+  const selected: Provider[] = [];
+  const used = new Set<string>();
+  for (const family of FEATURED_MODEL_FAMILIES) {
+    const provider = providers.find((item) => item.tag.toLowerCase().includes(family));
+    if (provider && !used.has(provider.tag)) { selected.push(provider); used.add(provider.tag); }
+  }
+  for (const provider of providers) {
+    if (selected.length >= limit) break;
+    if (!used.has(provider.tag)) { selected.push(provider); used.add(provider.tag); }
+  }
+  return selected.slice(0, limit);
 }

@@ -22,12 +22,12 @@ const features = [
   {
     icon: "💸",
     title: "Top up. Use. Done.",
-    desc: "Add funds to your wallet. 100% goes toward model costs. We take 4%. That's the whole deal.",
+    desc: "Add funds to your wallet. We charge a 4% top-up fee, and the remaining balance is used entirely for model costs.",
   },
   {
     icon: "🌐",
     title: "Every frontier model, one place",
-    desc: "GPT-4o, Claude, Gemini, Llama, DeepSeek, Qwen — all here, always current.",
+    desc: "Major model families in one place, with pricing and availability regularly updated.",
   },
 ];
 
