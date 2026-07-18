@@ -7,7 +7,7 @@ const features = [
   {
     icon: "⚡",
     title: "Let the router earn its keep",
-    desc: 'Send model: "auto" and we pick the cheapest model that can do the job. ~40% savings, zero effort.',
+    desc: 'Send model: "auto" and we pick a cost-effective model that can handle the task. Pin a model whenever consistency matters.',
   },
   {
     icon: "🎯",
@@ -17,7 +17,7 @@ const features = [
   {
     icon: "🔒",
     title: "Your prompts are none of our business",
-    desc: "Nothing stored, nothing logged. Requests proxy through and are immediately discarded.",
+    desc: "Prompt and response bodies are not stored or logged. Limited usage metadata remains for billing and operations.",
   },
   {
     icon: "💸",

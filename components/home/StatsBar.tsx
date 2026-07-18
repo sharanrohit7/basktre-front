@@ -1,15 +1,15 @@
 // 4 stats that fit in one row without wrapping
 const stats = [
   { value: "60+", label: "models available", accent: false },
-  { value: "~40%", label: "avg cost reduction", accent: false },
+  { value: "Auto", label: "cost-aware routing", accent: false },
   { value: "4%", label: "platform fee — nothing else", accent: true },
-  { value: "0", label: "data stored, ever", accent: false },
+  { value: "0", label: "prompt or response bodies stored", accent: false },
 ];
 
 export default function StatsBar() {
   return (
     <section className="border-y border-[var(--border)] bg-[var(--surface)]">
-      <div className="mx-auto flex max-w-[1080px] items-center justify-between px-12 py-5">
+      <div className="mx-auto grid max-w-[1080px] grid-cols-2 gap-6 px-6 py-5 lg:flex lg:items-center lg:justify-between lg:px-12">
         {stats.map((stat, i) => (
           <div key={stat.label} className="flex items-center">
             {/* Divider between items */}
