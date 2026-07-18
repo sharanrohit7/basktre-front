@@ -9,14 +9,15 @@ export const dynamic = "force-dynamic";
  */
 async function proxy(
   request: NextRequest,
-  { params }: { params: { id: string; key_id: string } }
+  { params }: { params: Promise<{ id: string; key_id: string }> }
 ) {
-  const target = buildUpstreamUrl(`/workspace/${params.id}/api-key/${params.key_id}`);
+  const { id, key_id } = await params;
+  const target = buildUpstreamUrl(`/workspace/${id}/api-key/${key_id}`);
   const authHeader = request.headers.get("authorization") ?? "";
 
   if (process.env.NODE_ENV === "development") {
     console.log(
-      `[basktre:proxy] ${request.method} /api/v1/workspace/${params.id}/api-key/${params.key_id} → forwarding to`,
+      `[basktre:proxy] ${request.method} /api/v1/workspace/${id}/api-key/${key_id} → forwarding to`,
       target
     );
   }

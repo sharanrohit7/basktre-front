@@ -1,4 +1,7 @@
 import LegalDoc from "@/components/home/LegalDoc";
+import type { Metadata } from "next";
+
+export const metadata: Metadata = { title: "Terms of Service", description: "Read the terms governing Basktre accounts, API access, billing and acceptable use.", alternates: { canonical: "/terms" } };
 
 const sections = [
   {
@@ -22,7 +25,7 @@ const sections = [
     title: "3. Accounts and access",
     body: [
       "You are responsible for maintaining API key confidentiality and all usage under your keys.",
-      "If a key is compromised, rotate immediately and notify security@basktre.dev."
+      "If a key is compromised, rotate immediately and notify security@basktre.in."
     ]
   },
   {
@@ -80,7 +83,7 @@ const sections = [
   {
     id: "contact",
     title: "12. Contact",
-    body: "For legal questions, contact legal@basktre.dev. For support, contact support@basktre.dev."
+    body: "For legal questions, contact legal@basktre.in. For support, contact support@basktre.in."
   }
 ];
 
