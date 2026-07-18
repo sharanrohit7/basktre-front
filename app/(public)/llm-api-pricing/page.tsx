@@ -12,13 +12,6 @@ export const metadata: Metadata = {
 
 export default async function Page() {
   const providers = await getProviders();
-  const generatedAt = new Date();
-  const snapshotGeneratedAt = new Intl.DateTimeFormat("en-GB", {
-    dateStyle: "long",
-    timeStyle: "short",
-    timeZone: "UTC",
-  }).format(generatedAt);
-
   return (
     <SeoPage
       path="/llm-api-pricing"
@@ -28,11 +21,6 @@ export default async function Page() {
     >
       <h2>Compare model API prices</h2>
       <p>Prices are shown in US dollars per one million tokens and come from Basktre&apos;s public providers endpoint.</p>
-      {providers.length > 0 && (
-        <p className="mt-2 text-sm text-[var(--text-3)]">
-          Pricing snapshot generated: <time dateTime={generatedAt.toISOString()}>{snapshotGeneratedAt} UTC</time>. The provider endpoint does not currently expose its underlying catalog-sync timestamp.
-        </p>
-      )}
       <PricingExplorer providers={providers} />
       <p>Know your token volume? Use the <Link className="underline" href="/llm-api-cost-calculator">LLM API cost calculator</Link> to estimate a workload.</p>
     </SeoPage>

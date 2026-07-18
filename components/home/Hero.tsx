@@ -185,7 +185,7 @@ export default function Hero() {
             <div className="flex items-center justify-between">
               <div className="flex items-center gap-2">
                 <span className="rounded bg-[rgba(134,239,172,0.15)] px-2 py-0.5 font-mono text-[11px] text-[#86efac]">
-                  gemini-2.0-flash
+                  claude-haiku-4-5
                 </span>
                 <span className="font-mono text-[11px] text-white/35">selected by router</span>
               </div>
