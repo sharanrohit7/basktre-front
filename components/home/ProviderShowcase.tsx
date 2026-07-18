@@ -202,7 +202,7 @@ export default function ProviderShowcase() {
           >
             <span style={styles.sidebarBtnDot} />
             <span style={{ flex: 1 }}>All models</span>
-            <span style={styles.sidebarCount}>{providers.length}</span>
+            <span style={styles.sidebarCount}>{loading ? "60+" : providers.length}</span>
           </button>
           {BRANDS.filter((b) => (brandCounts[b.label] ?? 0) > 0).map((b) => (
             <button
@@ -264,7 +264,7 @@ export default function ProviderShowcase() {
               )}
             </div>
             <div style={styles.resultCount}>
-              {filtered.length} model{filtered.length !== 1 ? "s" : ""}
+              {loading ? "60+ models available" : `${filtered.length} model${filtered.length !== 1 ? "s" : ""}`}
             </div>
           </div>
 
