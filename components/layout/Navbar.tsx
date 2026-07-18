@@ -16,6 +16,9 @@ export default function Navbar() {
         </span>
       </Link>
       <div className="flex items-center gap-7 text-sm">
+        <Link href="/llm-api-pricing" className="text-[var(--text-2)]">
+          Pricing
+        </Link>
         <Link href="/#faq" className="text-[var(--text-2)]">
           FAQ
         </Link>

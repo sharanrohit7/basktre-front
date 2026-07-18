@@ -3,14 +3,14 @@ export const siteConfig = {
   tagline: "AI API calls, smarter and cheaper.",
   description:
     "One API key. 60+ models. Auto-routing that cuts your AI costs by up to 40% with no loss in quality.",
-  url: "https://basktre.dev",
+  url: "https://basktre.in",
   email: {
-    hello: "hello@basktre.dev",
-    support: "support@basktre.dev",
-    legal: "legal@basktre.dev",
-    privacy: "privacy@basktre.dev",
-    security: "security@basktre.dev",
-    billing: "billing@basktre.dev"
+    hello: "hello@basktre.in",
+    support: "support@basktre.in",
+    legal: "legal@basktre.in",
+    privacy: "privacy@basktre.in",
+    security: "security@basktre.in",
+    billing: "billing@basktre.in"
   },
   nav: [
     { label: "FAQ", href: "/#faq" },

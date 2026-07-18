@@ -3,8 +3,9 @@ import { buildUpstreamUrl } from "@/lib/server/upstream";
 
 export const dynamic = "force-dynamic";
 
-export async function GET(request: NextRequest, { params }: { params: { user_id: string } }) {
-  const target = buildUpstreamUrl(`/workspace/user/${params.user_id}`);
+export async function GET(request: NextRequest, { params }: { params: Promise<{ user_id: string }> }) {
+  const { user_id } = await params;
+  const target = buildUpstreamUrl(`/workspace/user/${user_id}`);
   const authHeader = request.headers.get("authorization") ?? "";
 
   try {

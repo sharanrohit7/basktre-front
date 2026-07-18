@@ -1,0 +1,13 @@
+"use client";
+import { useMemo, useState } from "react";
+import type { Provider } from "@/types";
+import { formatPrice, providerBrand } from "@/lib/pricing";
+
+type Sort = "name" | "input" | "output";
+export default function PricingExplorer({ providers }: { providers: Provider[] }) {
+  const [query, setQuery] = useState(""); const [brand, setBrand] = useState("All"); const [sort, setSort] = useState<Sort>("name");
+  const brands = useMemo(() => ["All", ...Array.from(new Set(providers.map((p) => providerBrand(p.tag)))).sort()], [providers]);
+  const rows = useMemo(() => providers.filter((p) => (brand === "All" || providerBrand(p.tag) === brand) && `${p.name} ${p.tag}`.toLowerCase().includes(query.toLowerCase())).sort((a,b) => sort === "name" ? a.name.localeCompare(b.name) : sort === "input" ? a.input_cost_per_1m-b.input_cost_per_1m : a.output_cost_per_1m-b.output_cost_per_1m), [providers, query, brand, sort]);
+  if (!providers.length) return <div className="mt-8 rounded-xl border border-[var(--border)] bg-white p-6"><strong>Live pricing is temporarily unavailable.</strong><p className="mt-2 text-[var(--text-2)]">Please retry shortly. Basktre charges direct model rates plus a 4% fee when you fund your wallet.</p></div>;
+  return <div className="mt-8"><div className="flex flex-wrap gap-3"><input className="min-w-[240px] flex-1 rounded-lg border border-[var(--border)] bg-white px-4 py-3" value={query} onChange={(e)=>setQuery(e.target.value)} placeholder="Search models…" aria-label="Search models"/><select className="rounded-lg border border-[var(--border)] bg-white px-4" value={brand} onChange={(e)=>setBrand(e.target.value)} aria-label="Filter by provider">{brands.map((b)=><option key={b}>{b}</option>)}</select><select className="rounded-lg border border-[var(--border)] bg-white px-4" value={sort} onChange={(e)=>setSort(e.target.value as Sort)} aria-label="Sort models"><option value="name">Sort by name</option><option value="input">Lowest input price</option><option value="output">Lowest output price</option></select></div><div className="mt-5 overflow-x-auto rounded-xl border border-[var(--border)] bg-white"><table className="w-full"><thead><tr><th>Model</th><th>Provider</th><th>Input / 1M tokens</th><th>Output / 1M tokens</th></tr></thead><tbody>{rows.map((p)=><tr key={p.tag}><td><strong>{p.name}</strong><div className="font-mono text-xs text-[var(--text-3)]">{p.tag}</div></td><td>{providerBrand(p.tag)}</td><td>{formatPrice(p.input_cost_per_1m)}</td><td>{formatPrice(p.output_cost_per_1m)}</td></tr>)}</tbody></table>{rows.length===0&&<p className="p-6 text-[var(--text-2)]">No models match those filters.</p>}</div></div>;
+}

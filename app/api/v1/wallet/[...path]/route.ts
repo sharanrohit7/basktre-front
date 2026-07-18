@@ -1,8 +1,9 @@
 import { NextRequest, NextResponse } from "next/server";
 import { buildUpstreamUrl } from "@/lib/server/upstream";
 
-async function proxy(request: NextRequest, { params }: { params: { path: string[] } }) {
-  const pathString = params.path.join("/");
+async function proxy(request: NextRequest, { params }: { params: Promise<{ path: string[] }> }) {
+  const { path } = await params;
+  const pathString = path.join("/");
   const url = new URL(request.url);
   const search = url.search;
   

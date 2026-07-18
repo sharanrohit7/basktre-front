@@ -1,9 +1,10 @@
 import { NextRequest, NextResponse } from "next/server";
 import { buildUpstreamUrl } from "@/lib/server/upstream";
 
-async function proxy(request: NextRequest, { params }: { params: { id: string } }) {
+async function proxy(request: NextRequest, { params }: { params: Promise<{ id: string }> }) {
+  const { id } = await params;
   const url = new URL(request.url);
-  const target = buildUpstreamUrl(`/workspace/${params.id}${url.search}`);
+  const target = buildUpstreamUrl(`/workspace/${id}${url.search}`);
   const authHeader = request.headers.get("authorization") ?? "";
 
   const init: RequestInit = {

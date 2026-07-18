@@ -40,9 +40,7 @@ export default function HomePage() {
             <GoogleSignInButton />
             <div className="flex items-center gap-5">
               <Link
-                href="https://docs.basktre.in"
-                target="_blank"
-                rel="noopener noreferrer"
+                href="/docs"
                 className="text-[13.5px] text-[var(--text-3)] underline-offset-4 hover:text-[var(--text-2)] hover:underline"
               >
                 Read the docs →

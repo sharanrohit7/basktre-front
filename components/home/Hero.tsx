@@ -56,11 +56,9 @@ export default function Hero() {
           <h1
             className="hero-fade hero-fade-2 mb-5 font-[var(--font-serif)] text-[clamp(40px,5vw,64px)] leading-[1.06] tracking-[-1.5px]"
           >
-            One key.
+            One API for every LLM.
             <br />
-            Every model.
-            <br />
-            <em className="text-[var(--accent)]">Zero markup.</em>
+            <em className="text-[var(--accent)]">Automatically routed for lower cost.</em>
           </h1>
 
           {/* Sub-headline */}

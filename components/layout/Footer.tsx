@@ -10,7 +10,12 @@ export default function Footer() {
           Contact: tech@basktre.in
         </a>
       </div>
-      <div className="flex gap-6">
+      <div className="flex flex-wrap gap-x-6 gap-y-2">
+        <Link href="/openrouter-alternative" className="text-[13px] text-[var(--text-3)]">OpenRouter alternative</Link>
+        <Link href="/llm-api-pricing" className="text-[13px] text-[var(--text-3)]">LLM pricing</Link>
+        <Link href="/llm-api-cost-calculator" className="text-[13px] text-[var(--text-3)]">Cost calculator</Link>
+        <Link href="/llm-router" className="text-[13px] text-[var(--text-3)]">LLM router</Link>
+        <Link href="/unified-llm-api" className="text-[13px] text-[var(--text-3)]">Unified API</Link>
         <Link href="/about" className="text-[13px] text-[var(--text-3)]">
           About
         </Link>

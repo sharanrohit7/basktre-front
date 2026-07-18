@@ -1,11 +1,14 @@
 import LegalDoc from "@/components/home/LegalDoc";
+import type { Metadata } from "next";
+
+export const metadata: Metadata = { title: "Privacy Policy", description: "Read how Basktre handles account, billing and AI API request data.", alternates: { canonical: "/privacy" } };
 
 const sections = [
   {
     id: "overview",
     title: "1. Overview",
     body: [
-      'Basktre ("we", "us", "our") operates an AI API gateway at basktre.dev. This Privacy Policy applies to all users of our website, API, and waitlist ("you").',
+      'Basktre ("we", "us", "our") operates an AI API gateway at basktre.in. This Privacy Policy applies to all users of our website, API, and waitlist ("you").',
       "By using Basktre, you agree to the practices described in this policy."
     ]
   },
@@ -54,7 +57,7 @@ const sections = [
     title: "7. Security",
     body: [
       "We use TLS in transit, encryption at rest for stored account data, and strict access controls.",
-      "If you discover a vulnerability, report it to security@basktre.dev."
+      "If you discover a vulnerability, report it to security@basktre.in."
     ]
   },
   {
@@ -62,7 +65,7 @@ const sections = [
     title: "8. Your rights",
     body: [
       "You may request access, correction, portability, objection, or deletion depending on your region.",
-      "To submit a request, contact privacy@basktre.dev."
+      "To submit a request, contact privacy@basktre.in."
     ]
   },
   {
@@ -78,7 +81,7 @@ const sections = [
   {
     id: "contact",
     title: "11. Contact",
-    body: "For privacy requests and legal matters, contact privacy@basktre.dev and legal@basktre.dev."
+    body: "For privacy requests and legal matters, contact privacy@basktre.in and legal@basktre.in."
   }
 ];
 

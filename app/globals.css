@@ -319,3 +319,12 @@ body {
   transform: translateY(-1px);
   background: var(--surface) !important;
 }
+/* SEO landing-page prose */
+.seo-content h2 { margin-top: 3.5rem; font-family: var(--font-serif); font-size: clamp(1.9rem,4vw,2.7rem); line-height: 1.15; }
+.seo-content h3 { margin-top: 2rem; font-size: 1.15rem; font-weight: 650; }
+.seo-content p { margin-top: 1rem; max-width: 780px; line-height: 1.75; color: var(--text-2); }
+.seo-content ul, .seo-content ol { margin: 1rem 0 0 1.25rem; max-width: 780px; list-style: disc; color: var(--text-2); }
+.seo-content li { margin-top: .55rem; line-height: 1.6; }
+.seo-content table { margin-top: 1.5rem; width: 100%; border-collapse: collapse; background: white; }
+.seo-content th, .seo-content td { border-bottom: 1px solid var(--border); padding: .9rem; text-align: left; }
+.seo-content pre { margin-top: 1.5rem; overflow-x: auto; border-radius: .75rem; background: var(--ink); padding: 1.25rem; color: #d1fae5; }
