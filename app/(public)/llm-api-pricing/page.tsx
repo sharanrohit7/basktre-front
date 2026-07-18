@@ -24,7 +24,7 @@ export default async function Page() {
       path="/llm-api-pricing"
       eyebrow="// live model pricing"
       title="LLM API pricing, compared clearly"
-      intro="Compare current input and output token rates across 60+ models. Basktre shows displayed per-token model rates with no additional token markup and charges 4% only when you add funds to your wallet."
+      intro="Compare current input and output token rates across Basktre's growing model catalog. Live availability may vary during beta. Basktre shows displayed per-token model rates with no additional token markup and charges 4% only when you add funds to your wallet."
     >
       <h2>Compare model API prices</h2>
       <p>Prices are shown in US dollars per one million tokens and come from Basktre&apos;s public providers endpoint.</p>

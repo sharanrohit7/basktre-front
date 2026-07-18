@@ -49,7 +49,7 @@ export default function Hero() {
               className="h-1.5 w-1.5 flex-shrink-0 rounded-full bg-[var(--accent)]"
               style={{ animation: "badgePulse 2s ease-in-out infinite" }}
             />
-            Live · 60+ models · zero waitlist
+            Live · growing model catalog · zero waitlist
           </div>
 
           {/* Headline */}
@@ -63,8 +63,8 @@ export default function Hero() {
 
           {/* Sub-headline */}
           <p className="hero-fade hero-fade-3 mb-8 max-w-[430px] text-base font-light leading-[1.85] text-[var(--text-2)]">
-            One Basktre API key unlocks 60+ models — GPT, Claude, Gemini, Llama,
-            DeepSeek, and more. Set&nbsp;
+            One Basktre API key unlocks a growing catalog spanning GPT, Claude, Gemini, Llama,
+            DeepSeek, and more. Live availability may vary during beta. Set&nbsp;
             <code className="rounded bg-[var(--surface)] px-1 py-0.5 font-mono text-[12px] text-[var(--text)]">
               model:&nbsp;&quot;auto&quot;
             </code>{" "}

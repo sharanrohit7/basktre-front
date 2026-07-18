@@ -18,10 +18,10 @@ export const metadata: Metadata = {
   openGraph: {
     type: "website", url: siteConfig.url, siteName: "Basktre",
     title: "Basktre — Intelligent LLM Router & Unified AI API Gateway",
-    description: "One API for 60+ models, automatic cost routing, transparent pricing, and no prompt or response logging.",
+    description: "One API for a growing model catalog, automatic cost routing, transparent pricing, and no prompt or response logging.",
     images: [{ url: "/opengraph-image", width: 1200, height: 630, alt: "Basktre intelligent LLM router" }]
   },
-  twitter: { card: "summary_large_image", title: "Basktre — Intelligent LLM Router", description: "One API for 60+ models, automatically routed for lower cost.", images: ["/opengraph-image"] },
+  twitter: { card: "summary_large_image", title: "Basktre — Intelligent LLM Router", description: "One API for a growing model catalog, automatically routed for lower cost.", images: ["/opengraph-image"] },
   robots: { index: true, follow: true },
   icons: {
     icon: "/icon",

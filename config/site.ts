@@ -2,7 +2,7 @@ export const siteConfig = {
   name: "basktre",
   tagline: "AI API calls, smarter and cheaper.",
   description:
-    "One API key. 60+ models. Auto-routing that cuts your AI costs by up to 40% with no loss in quality.",
+    "One API key for a growing model catalog, with automatic cost-aware routing and transparent pricing.",
   url: "https://basktre.in",
   email: {
     hello: "hello@basktre.in",

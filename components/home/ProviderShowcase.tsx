@@ -159,7 +159,7 @@ export default function ProviderShowcase({ initialProviders = [] }: { initialPro
     <section className="section" id="providers" style={{ paddingTop: 60 }}>
       {/* ── Header ───────────────────────────────── */}
       <div className="mb-3 font-mono text-[11px] uppercase tracking-[1.5px] text-[var(--accent)]">
-        {"// 60+ models, live"}
+        {"// growing model catalog"}
       </div>
       <h2 className="mb-4 font-[var(--font-serif)] text-[clamp(30px,4vw,48px)] leading-tight">
         Every model.
@@ -202,7 +202,7 @@ export default function ProviderShowcase({ initialProviders = [] }: { initialPro
           >
             <span style={styles.sidebarBtnDot} />
             <span style={{ flex: 1 }}>All models</span>
-            <span style={styles.sidebarCount}>{loading ? "60+" : providers.length}</span>
+            <span style={styles.sidebarCount}>{loading ? "…" : providers.length}</span>
           </button>
           {BRANDS.filter((b) => (brandCounts[b.label] ?? 0) > 0).map((b) => (
             <button
@@ -264,7 +264,7 @@ export default function ProviderShowcase({ initialProviders = [] }: { initialPro
               )}
             </div>
             <div style={styles.resultCount}>
-              {loading ? "60+ models available" : `${filtered.length} model${filtered.length !== 1 ? "s" : ""}`}
+              {loading ? "Loading live catalog…" : `${filtered.length} model${filtered.length !== 1 ? "s" : ""}`}
             </div>
           </div>
 

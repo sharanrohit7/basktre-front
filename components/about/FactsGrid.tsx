@@ -4,7 +4,7 @@ export default function FactsGrid() {
       <div className="mx-auto max-w-[760px]">
         <h2 className="mb-9 font-[var(--font-serif)] text-4xl">Basktre in numbers</h2>
         <div className="grid grid-cols-1 gap-4 md:grid-cols-2">
-          <Fact num="60+" label="Models available in beta across all major providers" />
+          <Fact num="Growing" label="Model catalog with live availability shown in pricing" />
           <Fact num="Auto" label="Cost-aware routing with manual model override" />
           <Fact num="0" label="Bytes of prompt or response data stored on our servers" />
           <Fact num="1" label="API key needed to access every supported model" />
