@@ -65,7 +65,7 @@ export default function SignUpOffer() {
             <p className="mb-8 max-w-[480px] text-[16px] font-light leading-[1.85] text-white/60">
               Create a free Basktre account and receive{" "}
               <strong className="font-semibold text-white">$1 USD in instant wallet credits</strong> — 
-              no credit card, no trial period, no strings. Use them across any of our 60+ AI models 
+              no credit card, no trial period, no strings. Use them across our currently available AI models 
               including GPT-4o, Claude, Gemini, Llama, and DeepSeek at displayed per-token rates with no additional Basktre token markup.
             </p>
 
@@ -85,7 +85,7 @@ export default function SignUpOffer() {
                   <span className="text-[13px] text-white/60">per-model pricing</span>
                 </div>
                 <div className="mt-1 font-mono text-[11px] text-white/30">
-                  for <span className="text-white/50">60+ supported models</span>
+                  for <span className="text-white/50">the live model catalog</span>
                 </div>
               </div>
 
@@ -96,7 +96,7 @@ export default function SignUpOffer() {
               {[
                 "No credit card required",
                 "Instant credit, no waiting",
-                "Works on all 60+ models",
+                "Works across the live model catalog",
                 "No expiry on credits",
               ].map((t) => (
                 <li
@@ -161,10 +161,10 @@ export default function SignUpOffer() {
               {/* What you unlock */}
               <div className="mb-6 space-y-2.5">
                 {[
-                  { icon: "🤖", text: "Access to GPT-4o, Claude, Gemini, DeepSeek & 60+ more" },
+                  { icon: "🤖", text: "Access to a growing catalog including GPT, Claude, Gemini, and DeepSeek" },
                   { icon: "⚡", text: "Auto-routing — we pick the cheapest model that works" },
                   { icon: "🔑", text: "One API key. One endpoint. Zero complexity." },
-                  { icon: "🛡️", text: "Zero data stored. No prompt logs. Ever." },
+                  { icon: "🛡️", text: "No prompt or response bodies stored" },
                 ].map(({ icon, text }) => (
                   <div key={text} className="flex items-start gap-3">
                     <span className="text-base leading-tight" aria-hidden="true">{icon}</span>
