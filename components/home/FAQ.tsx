@@ -6,7 +6,7 @@ const faqs = [
   {
     question: "How does pricing work?",
     answer:
-      "You top up your Basktre wallet. 4% of the top-up amount is our fee — that's it, that's our entire revenue model. The remaining 96% is yours to spend on model calls at exact provider rates. No markup on tokens, no per-request fee, no subscription.",
+      "You top up your Basktre wallet. 4% of the top-up amount is our fee. The remaining 96% is yours to spend on model calls at the displayed per-token model rates, with no additional Basktre token markup, per-request fee, or subscription.",
   },
   {
     question: "How does auto-routing work?",
