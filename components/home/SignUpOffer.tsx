@@ -1,64 +1,11 @@
 "use client";
 
-import { useState, useEffect, useRef } from "react";
 import GoogleSignInButton from "@/components/ui/GoogleSignInButton";
 
-// Animated counter hook
-function useCountUp(target: number, duration: number = 1800, startOnVisible: boolean = true) {
-  const [count, setCount] = useState(0);
-  const [started, setStarted] = useState(false);
-  const ref = useRef<HTMLDivElement>(null);
-
-  useEffect(() => {
-    if (!startOnVisible) { setStarted(true); return; }
-    const observer = new IntersectionObserver(
-      ([entry]) => { if (entry.isIntersecting) { setStarted(true); observer.disconnect(); } },
-      { threshold: 0.3 }
-    );
-    if (ref.current) observer.observe(ref.current);
-    return () => observer.disconnect();
-  }, [startOnVisible]);
-
-  useEffect(() => {
-    if (!started) return;
-    const steps = 60;
-    const increment = target / steps;
-    let current = 0;
-    const timer = setInterval(() => {
-      current += increment;
-      if (current >= target) { setCount(target); clearInterval(timer); }
-      else setCount(Math.floor(current));
-    }, duration / steps);
-    return () => clearInterval(timer);
-  }, [started, target, duration]);
-
-  return { count, ref };
-}
-
-const SAVINGS_FACTS = [
-  { model: "GPT-4o Mini", calls: "2,000+", task: "text queries" },
-  { model: "Gemini Flash", calls: "5,000+", task: "fast responses" },
-  { model: "DeepSeek V3", calls: "7,000+", task: "code completions" },
-  { model: "Llama 3.3 70B", calls: "1,400+", task: "reasoning tasks" },
-];
-
 export default function SignUpOffer() {
-  const [activeFact, setActiveFact] = useState(0);
-  const [claimed, setClaimed] = useState(false);
-  const { count: callCount, ref: sectionRef } = useCountUp(7142, 2000);
-
-  // Rotate through facts
-  useEffect(() => {
-    const id = setInterval(() => setActiveFact(f => (f + 1) % SAVINGS_FACTS.length), 2800);
-    return () => clearInterval(id);
-  }, []);
-
-  const fact = SAVINGS_FACTS[activeFact];
-
   return (
     <section
       id="launch-offer"
-      ref={sectionRef}
       aria-label="Limited time sign-up offer: $1 free AI credits"
       className="relative overflow-hidden border-y border-[var(--border)]"
       style={{ background: "linear-gradient(135deg, #0d1f17 0%, #0a1a12 50%, #071410 100%)" }}
@@ -91,7 +38,7 @@ export default function SignUpOffer() {
                 <span className="relative inline-flex h-2 w-2 rounded-full bg-[#4ade80]" />
               </span>
               <span className="font-mono text-[11px] font-semibold uppercase tracking-widest text-[#4ade80]">
-                Launch Week Offer — Limited Time
+                Beta Launch Offer
               </span>
             </div>
 
@@ -126,36 +73,22 @@ export default function SignUpOffer() {
             <div className="mb-8 flex items-start gap-4">
               <div
                 className="rounded-2xl border border-white/10 bg-white/5 px-5 py-4 backdrop-blur-sm"
-                role="status"
-                aria-live="polite"
-                aria-label={`$1 can buy ${fact.calls} ${fact.task} with ${fact.model}`}
+                aria-label="Basktre publishes live per-model pricing"
               >
                 <div className="mb-1 font-mono text-[10px] uppercase tracking-widest text-white/30">
-                  $1 buys you approximately
+                  Compare before you spend
                 </div>
                 <div className="flex items-baseline gap-2">
                   <span className="font-[var(--font-serif)] text-[28px] font-semibold text-[#4ade80]">
-                    {fact.calls}
+                    Live
                   </span>
-                  <span className="text-[13px] text-white/60">{fact.task}</span>
+                  <span className="text-[13px] text-white/60">per-model pricing</span>
                 </div>
                 <div className="mt-1 font-mono text-[11px] text-white/30">
-                  via <span className="text-white/50">{fact.model}</span>
+                  for <span className="text-white/50">60+ supported models</span>
                 </div>
               </div>
 
-              {/* Stats: total API calls served */}
-              <div className="rounded-2xl border border-white/10 bg-white/5 px-5 py-4 backdrop-blur-sm">
-                <div className="mb-1 font-mono text-[10px] uppercase tracking-widest text-white/30">
-                  API calls in first week
-                </div>
-                <div className="font-[var(--font-serif)] text-[28px] font-semibold text-white">
-                  {callCount.toLocaleString()}+
-                </div>
-                <div className="mt-1 font-mono text-[11px] text-white/30">
-                  by early builders
-                </div>
-              </div>
             </div>
 
             {/* Trust chips */}

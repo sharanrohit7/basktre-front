@@ -69,7 +69,7 @@ export default function Hero() {
               model:&nbsp;&quot;auto&quot;
             </code>{" "}
             and we route each request to the cheapest model that can do the job.
-            Avg&nbsp;~40% savings, automatically.{" "}
+            Cost-aware model selection, automatically.{" "}
             <strong className="font-semibold text-[var(--text)]">
               We charge 4% on wallet top-ups. Every other cent goes straight to model costs.
             </strong>
