@@ -21,7 +21,7 @@ const faqs = [
   {
     question: "Which models are available?",
     answer:
-      "60+ models including GPT-4o, o3, Claude 3.5 Sonnet/Haiku, Gemini 2.0 Flash/Pro, Llama 3.3, DeepSeek R1/V3, Qwen 2.5, and more. The list is updated as new models launch — check the Models section of the dashboard for the live list.",
+      "Basktre offers a growing catalog across GPT, Claude, Gemini, Llama, DeepSeek, Qwen, and other model families. Live availability may vary during beta, so check the pricing page or Models section of the dashboard for the current list.",
   },
   {
     question: "Can I use a specific model instead of auto?",

@@ -13,7 +13,7 @@ export default function AboutHero() {
       </h1>
       <div className="space-y-4 text-[17px] font-light leading-8 text-[var(--text-2)]">
         <p>
-          Basktre is an API gateway that gives developers and teams access to 60+ AI models through a single key - and
+          Basktre is an API gateway that gives developers and teams access to a growing catalog of AI models through a single key - and
           automatically routes each request to the most cost-efficient model that can handle it well.
         </p>
         <p>

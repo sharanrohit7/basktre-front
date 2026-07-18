@@ -3,7 +3,7 @@ import { Metadata } from "next";
 
 export const metadata: Metadata = {
   title: "API Documentation",
-  description: "Integrate the Basktre unified LLM API to access 60+ AI models with automatic cost optimization.",
+  description: "Integrate the Basktre unified LLM API to access a growing catalog of AI models with automatic cost optimization.",
   alternates: { canonical: "/docs" }
 };
 

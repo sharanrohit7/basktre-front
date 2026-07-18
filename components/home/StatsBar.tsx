@@ -1,6 +1,6 @@
 // 4 stats that fit in one row without wrapping
 const stats = [
-  { value: "60+", label: "models available", accent: false },
+  { value: "Growing", label: "model catalog", accent: false },
   { value: "Auto", label: "cost-aware routing", accent: false },
   { value: "4%", label: "platform fee — nothing else", accent: true },
   { value: "0", label: "prompt or response bodies stored", accent: false },

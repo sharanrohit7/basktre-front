@@ -15,12 +15,12 @@ const faqs = [
 ];
 
 export default function Page() {
-  return <SeoPage path="/openrouter-alternative" eyebrow="// comparison · verified 18 July 2026" title="A cost-saving OpenRouter alternative for developers" intro="Basktre is a smaller, text-focused alternative built around a 4% wallet top-up fee, 60+ models, automatic cost-aware routing and no prompt or response-body logging. The comparison below uses current Basktre behavior and OpenRouter’s official documentation." faqs={faqs}>
+  return <SeoPage path="/openrouter-alternative" eyebrow="// comparison · verified 18 July 2026" title="A cost-saving OpenRouter alternative for developers" intro="Basktre is a smaller, text-focused alternative built around a 4% wallet top-up fee, a growing model catalog, automatic cost-aware routing and no prompt or response-body logging. Live model availability may vary during beta. The comparison below uses current Basktre behavior and OpenRouter’s official documentation." faqs={faqs}>
     <h2>Basktre vs OpenRouter</h2>
     <p><strong>Last compared:</strong> 18 July 2026. OpenRouter features and pricing can change; follow the linked official sources before migrating production traffic.</p>
     <table><thead><tr><th>Capability</th><th>Basktre</th><th>OpenRouter</th></tr></thead><tbody>
       <tr><td>Credit-purchase fee</td><td>4% on wallet top-ups; no per-token markup</td><td>5.5% with a $0.80 minimum, according to its <a href="https://openrouter.ai/docs/faq" rel="nofollow">official FAQ</a></td></tr>
-      <tr><td>Model access</td><td>60+ models</td><td>400+ models on its <a href="https://openrouter.ai/pricing" rel="nofollow">official pricing page</a></td></tr>
+      <tr><td>Model access</td><td>Growing beta catalog; see <Link href="/llm-api-pricing">live availability</Link></td><td>400+ models on its <a href="https://openrouter.ai/pricing" rel="nofollow">official pricing page</a></td></tr>
       <tr><td>Automatic model routing</td><td><code>model: &quot;auto&quot;</code> selects a cost-effective capable model</td><td><code>openrouter/auto</code> selects from a curated pool; see <a href="https://openrouter.ai/docs/guides/routing/routers/auto-router" rel="nofollow">Auto Router docs</a></td></tr>
       <tr><td>Manual model selection</td><td>Yes</td><td>Yes</td></tr>
       <tr><td>Prompt retention by gateway</td><td>Prompt and response bodies are not stored</td><td>OpenRouter states prompts are not retained unless logging is opted into; see its <a href="https://openrouter.ai/docs/guides/features/zdr" rel="nofollow">ZDR documentation</a></td></tr>
