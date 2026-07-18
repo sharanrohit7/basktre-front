@@ -66,7 +66,7 @@ export default function SignUpOffer() {
               Create a free Basktre account and receive{" "}
               <strong className="font-semibold text-white">$1 USD in instant wallet credits</strong> — 
               no credit card, no trial period, no strings. Use them across any of our 60+ AI models 
-              including GPT-4o, Claude, Gemini, Llama, and DeepSeek at direct provider rates.
+              including GPT-4o, Claude, Gemini, Llama, and DeepSeek at displayed per-token rates with no additional Basktre token markup.
             </p>
 
             {/* Rotating fact pill — how far $1 goes */}

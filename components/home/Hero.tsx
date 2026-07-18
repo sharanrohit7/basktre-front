@@ -71,7 +71,7 @@ export default function Hero() {
             and we route each request to the cheapest model that can do the job.
             Cost-aware model selection, automatically.{" "}
             <strong className="font-semibold text-[var(--text)]">
-              We charge 4% on wallet top-ups. Every other cent goes straight to model costs.
+              We charge a 4% top-up fee. The remaining wallet balance is used entirely for model costs.
             </strong>
           </p>
 
