@@ -3,6 +3,7 @@ import { Instrument_Serif } from "next/font/google";
 import { GeistMono } from "geist/font/mono";
 import { GeistSans } from "geist/font/sans";
 import { Analytics } from "@vercel/analytics/next";
+import { SpeedInsights } from "@vercel/speed-insights/next";
 import { Providers } from "./providers";
 import "./globals.css";
 import { siteConfig } from "@/config/site";
@@ -37,6 +38,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
       >
         <Providers>{children}</Providers>
         <Analytics />
+        <SpeedInsights />
         <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify({
           "@context": "https://schema.org", "@graph": [
             { "@type": "Organization", "@id": `${siteConfig.url}/#organization`, name: "Basktre", legalName: "Microstack Labs", url: siteConfig.url, email: "tech@basktre.in" },
