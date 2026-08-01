@@ -56,15 +56,16 @@ export default function Hero() {
           <h1
             className="hero-fade hero-fade-2 mb-5 font-[var(--font-serif)] text-[clamp(40px,5vw,64px)] leading-[1.06] tracking-[-1.5px]"
           >
-            One API for every LLM.
+            Basktre: one API for every LLM.
             <br />
             <em className="text-[var(--accent)]">Automatically routed for lower cost.</em>
           </h1>
 
           {/* Sub-headline */}
           <p className="hero-fade hero-fade-3 mb-8 max-w-[430px] text-base font-light leading-[1.85] text-[var(--text-2)]">
-            One Basktre API key unlocks a growing catalog spanning GPT, Claude, Gemini, Llama,
-            DeepSeek, and more. Live availability may vary during beta. Set&nbsp;
+            Basktre is a unified LLM API gateway for developers. One API key unlocks a growing
+            catalog spanning GPT, Claude, Gemini, Llama, DeepSeek, and more. Live availability
+            may vary during beta. Set&nbsp;
             <code className="rounded bg-[var(--surface)] px-1 py-0.5 font-mono text-[12px] text-[var(--text)]">
               model:&nbsp;&quot;auto&quot;
             </code>{" "}
@@ -100,7 +101,7 @@ export default function Hero() {
                 See how it works
               </Link>
               <Link
-                href="/#providers"
+                href="/llm-api-pricing"
                 className="px-3 py-2 text-[13px] text-[var(--text-3)] transition-colors hover:text-[var(--text-2)]"
               >
                 Browse models &amp; pricing →
