@@ -1,9 +1,11 @@
 export const siteConfig = {
-  name: "basktre",
+  name: "Basktre",
   tagline: "AI API calls, smarter and cheaper.",
   description:
     "One API key for a growing model catalog, with automatic cost-aware routing and transparent pricing.",
   url: "https://basktre.in",
+  logo: "https://basktre.in/basktre-logo.svg",
+  socialProfiles: [] as string[],
   email: {
     hello: "hello@basktre.in",
     support: "support@basktre.in",

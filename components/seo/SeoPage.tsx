@@ -2,10 +2,14 @@ import Link from "next/link";
 import JsonLd from "./JsonLd";
 
 export type Faq = { question: string; answer: string };
-export function SeoPage({ path, eyebrow, title, intro, children, faqs = [] }: { path: string; eyebrow: string; title: string; intro: string; children: React.ReactNode; faqs?: Faq[] }) {
+export function SeoPage({ path, eyebrow, title, intro, children, faqs = [], schemaType = "TechArticle" }: { path: string; eyebrow: string; title: string; intro: string; children: React.ReactNode; faqs?: Faq[]; schemaType?: "TechArticle" | "WebApplication" }) {
   const url = `https://basktre.in${path}`;
   return <>
     <JsonLd data={{ "@context": "https://schema.org", "@type": "BreadcrumbList", itemListElement: [{ "@type": "ListItem", position: 1, name: "Home", item: "https://basktre.in" }, { "@type": "ListItem", position: 2, name: title, item: url }] }} />
+    <JsonLd data={{
+      "@context": "https://schema.org", "@type": schemaType, "@id": `${url}#main`, url, name: title,
+      ...(schemaType === "TechArticle" ? { headline: title, description: intro, inLanguage: "en", author: { "@id": "https://basktre.in/#organization" }, publisher: { "@id": "https://basktre.in/#organization" }, isPartOf: { "@id": "https://basktre.in/#website" } } : { description: intro, applicationCategory: "DeveloperApplication", operatingSystem: "Web", provider: { "@id": "https://basktre.in/#organization" } })
+    }} />
     {faqs.length > 0 && <JsonLd data={{ "@context": "https://schema.org", "@type": "FAQPage", mainEntity: faqs.map((faq) => ({ "@type": "Question", name: faq.question, acceptedAnswer: { "@type": "Answer", text: faq.answer } })) }} />}
     <article className="mx-auto max-w-[1080px] px-6 py-16 lg:px-12 lg:py-24">
       <div className="mb-3 font-mono text-[11px] uppercase tracking-[1.5px] text-[var(--accent)]">{eyebrow}</div>
