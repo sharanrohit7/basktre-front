@@ -41,8 +41,16 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <SpeedInsights />
         <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify({
           "@context": "https://schema.org", "@graph": [
-            { "@type": "Organization", "@id": `${siteConfig.url}/#organization`, name: "Basktre", legalName: "Microstack Labs", url: siteConfig.url, email: "tech@basktre.in" },
-            { "@type": "WebSite", "@id": `${siteConfig.url}/#website`, url: siteConfig.url, name: "Basktre", publisher: { "@id": `${siteConfig.url}/#organization` } }
+            {
+              "@type": "Organization", "@id": `${siteConfig.url}/#organization`, name: siteConfig.name,
+              legalName: "Microstack Labs", url: siteConfig.url, logo: { "@type": "ImageObject", url: siteConfig.logo },
+              description: siteConfig.description, email: "tech@basktre.in",
+              ...(siteConfig.socialProfiles.length > 0 ? { sameAs: siteConfig.socialProfiles } : {})
+            },
+            {
+              "@type": "WebSite", "@id": `${siteConfig.url}/#website`, url: siteConfig.url, name: siteConfig.name,
+              description: siteConfig.description, inLanguage: "en", publisher: { "@id": `${siteConfig.url}/#organization` }
+            }
           ]
         }).replace(/</g, "\\u003c") }} />
       </body>

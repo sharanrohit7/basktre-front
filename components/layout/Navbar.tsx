@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import Image from "next/image";
 import { useAuth } from "@/lib/auth";
 
 export default function Navbar() {
@@ -9,7 +10,7 @@ export default function Navbar() {
   return (
     <nav className="sticky left-0 right-0 top-0 z-[100] flex h-14 items-center justify-between border-b border-[var(--border)] bg-[rgba(250,249,247,0.9)] px-4 backdrop-blur-md sm:px-6 lg:px-12">
       <Link href="/" className="flex items-center gap-2.5 text-[var(--text)] no-underline">
-        <div className="relative h-[26px] w-[26px] rounded-md bg-[var(--accent)]" />
+        <Image src="/basktre-logo.svg" width={26} height={26} alt="Basktre" priority />
         <span className="text-base font-semibold">basktre</span>
         <span className="hidden rounded-full border border-[rgba(26,107,74,0.2)] bg-[var(--accent-light)] px-2 py-0.5 font-mono text-[10px] text-[var(--accent)] sm:inline">
           beta

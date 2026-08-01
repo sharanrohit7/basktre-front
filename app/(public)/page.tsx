@@ -24,6 +24,36 @@ export default async function HomePage() {
       <PrivacyBand />
       <FAQ />
 
+      <section aria-labelledby="basktre-resources-heading" className="border-t border-[var(--border)] px-6 py-20 lg:px-12">
+        <div className="mx-auto max-w-[1080px]">
+          <div className="mb-3 font-mono text-[11px] uppercase tracking-[1.5px] text-[var(--accent)]">
+            {"// learn about basktre"}
+          </div>
+          <h2 id="basktre-resources-heading" className="max-w-[720px] font-[var(--font-serif)] text-[clamp(34px,4vw,52px)] leading-tight tracking-[-1px]">
+            Explore the Basktre LLM API gateway
+          </h2>
+          <p className="mt-4 max-w-[720px] text-base font-light leading-7 text-[var(--text-2)]">
+            Learn how Basktre combines one API key, cost-aware model routing, transparent model pricing, and limited operational data retention.
+          </p>
+          <div className="mt-10 grid gap-4 md:grid-cols-2 lg:grid-cols-3">
+            {[
+              ["/unified-llm-api", "Unified LLM API", "Connect to supported GPT, Claude, Gemini, Llama and DeepSeek models through one text API."],
+              ["/llm-router", "Intelligent LLM routing", "See how automatic model selection works, when to pin a model, and what to test."],
+              ["/llm-api-pricing", "Live LLM API pricing", "Compare current input and output token rates across the available model catalog."],
+              ["/llm-api-cost-calculator", "LLM cost calculator", "Estimate model and wallet-funding costs for a representative production workload."],
+              ["/openrouter-alternative", "OpenRouter alternative", "Compare pricing, routing, privacy, compatibility and current feature boundaries."],
+              ["/privacy/no-logging", "No-logging architecture", "Understand what Basktre stores, what it discards, and where provider policies apply."],
+            ].map(([href, title, description]) => (
+              <Link key={href} href={href} className="rounded-xl border border-[var(--border)] bg-white p-6 transition-colors hover:border-[var(--border-dark)]">
+                <h3 className="font-semibold text-[var(--text)]">{title}</h3>
+                <p className="mt-2 text-sm leading-6 text-[var(--text-2)]">{description}</p>
+                <span className="mt-4 inline-block text-sm font-medium text-[var(--accent)]">Learn more →</span>
+              </Link>
+            ))}
+          </div>
+        </div>
+      </section>
+
       {/* ── Final CTA ─────────────────────────────────────────────── */}
       <section id="start-building" className="border-y border-[var(--border)] bg-white px-12 py-24 text-center">
         <div className="mx-auto max-w-[560px]">
@@ -49,7 +79,7 @@ export default async function HomePage() {
                 Read the docs →
               </Link>
               <Link
-                href="/#providers"
+                href="/llm-api-pricing"
                 className="text-[13.5px] text-[var(--text-3)] underline-offset-4 hover:text-[var(--text-2)] hover:underline"
               >
                 Browse model pricing →
