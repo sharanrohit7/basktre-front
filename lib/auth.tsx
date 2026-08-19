@@ -21,7 +21,7 @@ interface AuthContextValue extends AuthState {
   workspaces: Workspace[];
   activeWorkspace: Workspace | null;
   isLoading: boolean;
-  login: (googleIdToken: string, email: string, name: string, googleId: string) => Promise<void>;
+  login: (googleIdToken: string) => Promise<User>;
   logout: () => void;
   addWorkspace: (ws: Workspace) => void;
   setActiveWorkspace: (ws: Workspace) => void;
@@ -117,9 +117,9 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
   }, [fetchWorkspaces]);
 
   const login = useCallback(
-    async (googleIdToken: string, email: string, name: string, googleId: string) => {
-      // Call our backend to register/login the user
-      const response = await googleLogin(email, name, googleId);
+    async (googleIdToken: string) => {
+      // The backend derives identity exclusively from the verified Google ID token.
+      const response = await googleLogin(googleIdToken);
 
       const userData = response.data.user;
       setUser(userData);
@@ -130,6 +130,7 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
 
       // Fetch workspaces from the API after login
       await fetchWorkspaces(googleIdToken, userData.id);
+      return userData;
     },
     [fetchWorkspaces]
   );

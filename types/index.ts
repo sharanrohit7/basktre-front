@@ -18,12 +18,6 @@ export interface NavLink {
 
 // ─── Auth ────────────────────────────────────────────
 
-export interface GoogleLoginRequest {
-  email: string;
-  name: string;
-  google_id: string;
-}
-
 export interface User {
   id: number;
   email: string;
@@ -50,6 +44,7 @@ export interface AuthState {
 export interface CreateWorkspaceRequest {
   workspace_code: string;
   workspace_name: string;
+  inference_mode: "managed" | "byok";
 }
 
 export interface Workspace {
@@ -57,12 +52,34 @@ export interface Workspace {
   workspace_code: string;
   name: string;
   status: string;
+  inference_mode: "managed" | "byok";
 }
 
 export interface CreateWorkspaceResponse {
   success: boolean;
   data: {
     workspace: Workspace;
+  };
+}
+
+export interface BYOKCredential {
+  provider: string;
+  name?: string;
+  key_suffix: string;
+  is_active: boolean;
+}
+
+export interface BYOKCredentialsResponse {
+  success: boolean;
+  data: {
+    credentials: BYOKCredential[];
+  };
+}
+
+export interface BYOKCredentialResponse {
+  success: boolean;
+  data: {
+    credential: BYOKCredential;
   };
 }
 

@@ -8,16 +8,6 @@ import { useRouter } from "next/navigation";
 import { useState } from "react";
 import Spinner from "@/components/ui/Spinner";
 
-function decodeJwtPayload(token: string): Record<string, string> {
-  try {
-    const base64Url = token.split(".")[1];
-    const base64 = base64Url.replace(/-/g, "+").replace(/_/g, "/");
-    return JSON.parse(atob(base64));
-  } catch {
-    return {};
-  }
-}
-
 function GoogleSignInInner({ label }: { label?: string }) {
   const { login } = useAuth();
   const { addToast } = useToast();
@@ -31,20 +21,10 @@ function GoogleSignInInner({ label }: { label?: string }) {
       return;
     }
 
-    const payload = decodeJwtPayload(idToken);
-    const email = payload.email ?? "";
-    const name = payload.name ?? "";
-    const sub = payload.sub ?? "";
-
-    if (!email || !sub) {
-      addToast("error", "Could not extract user info from Google token.");
-      return;
-    }
-
     setLoading(true);
     try {
-      await login(idToken, email, name, sub);
-      addToast("success", `Welcome, ${name || email}!`);
+      const user = await login(idToken);
+      addToast("success", `Welcome, ${user.name || user.email}!`);
       router.push("/dashboard");
     } catch (err) {
       addToast("error", err instanceof Error ? err.message : "Login failed. Please try again.");

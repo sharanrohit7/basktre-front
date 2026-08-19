@@ -3,7 +3,7 @@
  * Uses split env vars (INTERNAL_API_ORIGIN + INTERNAL_API_PREFIX).
  */
 export function buildUpstreamUrl(path: string): string {
-  const origin = (process.env.INTERNAL_API_ORIGIN ?? "http://localhost:3001").replace(/\/+$/, "");
+  const origin = (process.env.INTERNAL_API_ORIGIN ?? "http://localhost:8082").replace(/\/+$/, "");
   let prefix = process.env.INTERNAL_API_PREFIX ?? "/api/v1";
   if (!prefix.startsWith("/")) {
     prefix = `/${prefix}`;

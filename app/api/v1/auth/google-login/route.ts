@@ -5,11 +5,14 @@ export const dynamic = "force-dynamic";
 
 /**
  * Proxies POST /api/v1/auth/google-login to the Go API gateway.
- * Body: { email, name, google_id }
+ * Identity is carried only by the Google ID token in Authorization.
  */
 export async function POST(request: Request) {
   const target = buildUpstreamUrl("/auth/google-login");
-  const body = await request.text();
+  const authorization = request.headers.get("authorization");
+  if (!authorization) {
+    return NextResponse.json({ message: "Missing Google ID token." }, { status: 401 });
+  }
 
   if (process.env.NODE_ENV === "development") {
     console.log("[basktre:proxy] POST /api/v1/auth/google-login → forwarding to", target);
@@ -19,8 +22,7 @@ export async function POST(request: Request) {
   try {
     upstream = await fetch(target, {
       method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body,
+      headers: { Authorization: authorization },
       cache: "no-store"
     });
   } catch (err) {

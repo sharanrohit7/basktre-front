@@ -17,6 +17,7 @@ export default function CreateWorkspaceModal({
   const { token, user, addWorkspace } = useAuth();
   const { addToast } = useToast();
   const [name, setName] = useState("");
+  const [inferenceMode, setInferenceMode] = useState<"managed" | "byok">("managed");
   const [loading, setLoading] = useState(false);
 
   function generateCode(name: string): string {
@@ -38,10 +39,11 @@ export default function CreateWorkspaceModal({
     setLoading(true);
     try {
       const code = generateCode(name);
-      const res = await createWorkspace(token, code, name.trim());
+      const res = await createWorkspace(token, code, name.trim(), inferenceMode);
       addWorkspace(res.data.workspace);
       addToast("success", `Workspace "${res.data.workspace.name}" created.`);
       setName("");
+      setInferenceMode("managed");
       onClose();
     } catch (err) {
       addToast("error", err instanceof Error ? err.message : "Failed to create workspace.");
@@ -87,6 +89,35 @@ export default function CreateWorkspaceModal({
             onFocus={(e) => (e.currentTarget.style.borderColor = "var(--accent)")}
             onBlur={(e) => (e.currentTarget.style.borderColor = "var(--border)")}
           />
+        </div>
+
+        <div style={{ marginBottom: 20 }}>
+          <label
+            htmlFor="inference-mode"
+            style={{ display: "block", fontSize: 13, fontWeight: 500, marginBottom: 6, color: "var(--text-2)" }}
+          >
+            Credential mode
+          </label>
+          <select
+            id="inference-mode"
+            value={inferenceMode}
+            onChange={(event) => setInferenceMode(event.target.value as "managed" | "byok")}
+            disabled={loading}
+            style={{
+              width: "100%",
+              padding: "10px 14px",
+              borderRadius: "var(--radius-md)",
+              border: "1px solid var(--border)",
+              background: "var(--bg)",
+              fontSize: 14
+            }}
+          >
+            <option value="managed">Managed — Basktre credentials and billing</option>
+            <option value="byok">BYOK — use my provider credentials</option>
+          </select>
+          <p style={{ marginTop: 6, fontSize: 12, color: "var(--text-3)" }}>
+            BYOK workspaces require you to add provider API keys after creation.
+          </p>
         </div>
 
         <div style={{ display: "flex", justifyContent: "flex-end", gap: 8 }}>

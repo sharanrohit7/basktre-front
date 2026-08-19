@@ -12,7 +12,9 @@ import type {
   DailyUsageResponse,
   TransactionsResponse,
   WalletResponse,
-  GetModelsResponse
+  GetModelsResponse,
+  BYOKCredentialsResponse,
+  BYOKCredentialResponse
 } from "@/types";
 
 /** Resolve at call time so NEXT_PUBLIC_* is inlined correctly in the client bundle. */
@@ -41,7 +43,7 @@ async function request<T>(path: string, options: RequestInit = {}): Promise<T> {
     if (process.env.NODE_ENV === "development" && typeof window !== "undefined") {
       console.debug("[basktre:api] error", response.status, error);
     }
-    throw new Error(error?.message ?? `Request failed: ${response.status}`);
+    throw new Error(error?.error?.message ?? error?.message ?? `Request failed: ${response.status}`);
   }
 
   return response.json();
@@ -58,14 +60,10 @@ export async function joinWaitlist(email: string): Promise<WaitlistResponse> {
 
 // ─── Auth ────────────────────────────────────────────
 
-export async function googleLogin(
-  email: string,
-  name: string,
-  googleId: string
-): Promise<GoogleLoginResponse> {
+export async function googleLogin(googleIdToken: string): Promise<GoogleLoginResponse> {
   return request<GoogleLoginResponse>("/auth/google-login", {
     method: "POST",
-    body: JSON.stringify({ email, name, google_id: googleId })
+    headers: { Authorization: `Bearer ${googleIdToken}` }
   });
 }
 
@@ -87,14 +85,16 @@ export async function getModels(token: string, providerTag: string): Promise<Get
 export async function createWorkspace(
   token: string,
   workspaceCode: string,
-  workspaceName: string
+  workspaceName: string,
+  inferenceMode: "managed" | "byok"
 ): Promise<CreateWorkspaceResponse> {
   return request<CreateWorkspaceResponse>("/workspace", {
     method: "POST",
     headers: { Authorization: `Bearer ${token}` },
     body: JSON.stringify({
       workspace_code: workspaceCode,
-      workspace_name: workspaceName
+      workspace_name: workspaceName,
+      inference_mode: inferenceMode
     })
   });
 }
@@ -151,7 +151,41 @@ export async function updateWorkspace(
   return request<{ success: boolean }>(`/workspace/${workspaceId}`, {
     method: "PUT",
     headers: { Authorization: `Bearer ${token}` },
-    body: JSON.stringify(updates)
+    body: JSON.stringify({
+      workspace_name: updates.name,
+      rate_limit_per_min: updates.rate_limit_per_min,
+      monthly_token_limit: updates.monthly_token_limit
+    })
+  });
+}
+
+// ─── BYOK Credentials ───────────────────────────────
+
+export async function getBYOKCredentials(token: string, workspaceId: number): Promise<BYOKCredentialsResponse> {
+  return request<BYOKCredentialsResponse>(`/workspace/${workspaceId}/byok/credentials`, {
+    method: "GET",
+    headers: { Authorization: `Bearer ${token}` }
+  });
+}
+
+export async function upsertBYOKCredential(
+  token: string,
+  workspaceId: number,
+  provider: string,
+  apiKey: string,
+  name?: string
+): Promise<BYOKCredentialResponse> {
+  return request<BYOKCredentialResponse>(`/workspace/${workspaceId}/byok/credentials/${provider}`, {
+    method: "PUT",
+    headers: { Authorization: `Bearer ${token}` },
+    body: JSON.stringify({ api_key: apiKey, name: name || undefined })
+  });
+}
+
+export async function deleteBYOKCredential(token: string, workspaceId: number, provider: string): Promise<void> {
+  await request(`/workspace/${workspaceId}/byok/credentials/${provider}`, {
+    method: "DELETE",
+    headers: { Authorization: `Bearer ${token}` }
   });
 }
 
